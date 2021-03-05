@@ -1,0 +1,15 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+set atom 1 charge ${q1}
+set atom 2 charge ${q2}
+set atom 3 charge ${q3}
+set atom 4 charge ${q4}
+set atom 5 charge ${q5}
+set atom 6 charge ${q6}
+set atom 7 charge ${q7}
+set atom 8 charge ${q8}
+set atom 9 charge ${q9}
+
+set type 6 charge ${q10}
+set type 7 charge ${q11}

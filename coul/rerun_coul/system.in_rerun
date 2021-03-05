@@ -1,0 +1,33 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+### This script is submitted in the job. ###
+
+# ----------------- Define variables -----------------
+
+include "system.in.variables_rerun"     ###  CHANGED DURING RERUN
+
+# ----------------- Init Section -----------------
+
+include "system.in.init"
+
+# ----------------- Atom Definition Section -----------------
+
+read_data "system.in.dat" ##Note: the charges defining in the data file are overwritten via "system.in.charges"
+
+# ----------------- Settings Section -----------------
+
+include "system.in.coeffs_rerun"     ###  CHANGED DURING RERUN
+include "system.in.charges"
+
+# ----------------- Run Section -----------------
+
+include "system.in.thermo"
+
+#include "system.in.minimize"        ###  CHANGED DURING RERUN
+
+#include "system.in.minimize_br"     ###  CHANGED DURING RERUN
+
+include "system.in.ensemble_rerun"   ###  CHANGED DURING RERUN
+
+include "system.in.run_rerun"        ###  CHANGED DURING RERUN

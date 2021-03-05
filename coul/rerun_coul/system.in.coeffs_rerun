@@ -1,0 +1,51 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+pair_coeff * * lj/cut/soft 0.0 1.0 1.0     ###  CHANGED DURING RERUN to remove all LJ interactions so the group/group in "system.in.thermo" file computes only the coulombic part
+pair_coeff * * coul/long
+
+## balance out charge on molecule
+pair_coeff   1   1 coul/cut/soft ${lmbCoul}
+pair_coeff   2   2 coul/cut/soft ${lmbCoul}
+pair_coeff   3   3 coul/cut/soft ${lmbCoul}
+pair_coeff   4   4 coul/cut/soft ${lmbCoul}
+pair_coeff   5   5 coul/cut/soft ${lmbCoul}
+pair_coeff   1   2 coul/cut/soft ${lmbCoul}
+pair_coeff   1   3 coul/cut/soft ${lmbCoul}
+pair_coeff   1   4 coul/cut/soft ${lmbCoul}
+pair_coeff   1   5 coul/cut/soft ${lmbCoul}
+pair_coeff   2   3 coul/cut/soft ${lmbCoul}
+pair_coeff   2   4 coul/cut/soft ${lmbCoul}
+pair_coeff   2   5 coul/cut/soft ${lmbCoul}
+pair_coeff   3   4 coul/cut/soft ${lmbCoul}
+pair_coeff   3   5 coul/cut/soft ${lmbCoul}
+pair_coeff   4   5 coul/cut/soft ${lmbCoul}
+
+
+
+##Bonds coeff
+
+bond_coeff 1 303.1000 1.5350  #c3_c3
+bond_coeff 2 314.1000 1.4260  #c3_oh
+bond_coeff 3 337.3000 1.0920  #c3_hc
+bond_coeff 4 335.9000 1.0930  #c3_h1
+bond_coeff 5 369.6000 0.9740  #oh_ho
+bond_coeff 6 450.0 0.9572     #wh_woh (water)
+
+##Angles coeff
+
+angle_coeff 1 67.7200 109.4300  #c3_c3_oh
+angle_coeff 2 46.3600 110.0700  #c3_c3_h1
+angle_coeff 3 46.3700 110.0500  #c3_c3_hc
+angle_coeff 4 47.0900 108.1600  #c3_oh_ho
+angle_coeff 5 50.9700 109.8800  #oh_c3_h1
+angle_coeff 6 39.4300 108.3500  #hc_c3_hc
+angle_coeff 7 39.1800 109.5500  #h1_c3_h1
+angle_coeff 8 55.0 104.52       #wh_woh_wh (water)
+
+##Dihedral coeffs
+
+dihedral_coeff 1 2 0.2500 1 0.0000 0.1600 3 0.0000  #c3_c3_oh_ho
+dihedral_coeff 2 2 0.2500 1 0.0000 0.0000 3 0.0000  #hc_c3_c3_oh
+dihedral_coeff 3 1 0.1556 3 0.0000  #hc_c3_c3_h1
+dihedral_coeff 4 1 0.1667 3 0.0000  #h1_c3_oh_ho
