@@ -1,0 +1,25 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+## Minimization routine
+
+dump		 minimization_data_4_b all custom 500 minimization_dump_4_b id mol type xu yu zu 
+
+fix         box_relax_4_b all box/relax iso 0.0
+min_style   cg
+minimize    1e-7 1e-9 2000 10000
+unfix       box_relax_4_b
+
+##END MIN ROUTINE
+
+
+## Minimization routine
+
+min_style   sd
+fix         box_relax_5_b all box/relax iso 0.0
+minimize    1e-7 1e-9 2000 10000
+unfix       box_relax_5_b
+
+##END MIN ROUTINE
+
+undump minimization_data_4_b

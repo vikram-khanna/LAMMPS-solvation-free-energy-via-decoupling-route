@@ -1,0 +1,20 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+# Default styles and settings for AMBER based force-fields:
+units           real
+atom_style      full
+boundary        p p p
+bond_style      harmonic
+angle_style     harmonic
+dihedral_style  fourier
+pair_style      hybrid/overlay lj/cut/soft 2 0.5 10.0 coul/long 10.0 coul/cut/soft 1.0 0.0 10.0
+kspace_style    pppm 1e-6
+    
+##############################################################################################################
+
+pair_modify     mix arithmetic
+pair_modify     tail yes
+special_bonds   amber
+neighbor 	    2.0 bin
+neigh_modify    delay 0 every 1 check yes one 20000 page 200000

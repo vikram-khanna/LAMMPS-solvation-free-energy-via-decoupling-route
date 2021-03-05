@@ -1,0 +1,28 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+################
+# Run data collection
+################
+
+reset_timestep	0
+
+dump            run_custom_data all custom 1000 coords_dump_all id mol type xu yu zu
+dump_modify     run_custom_data sort id
+
+ 
+
+fix output_run all print 1000 "${record_step} ${record_atoms} ${record_T} ${temp_corr} ${record_p} ${record_V} ${record_pe} ${record_ke} ${record_te} ${record_H} ${record_evdwl} ${record_etail} ${record_ecoul} ${record_elong} ${record_epair} ${record_ebond} ${record_eangle} ${record_edihed} ${record_eimp} ${record_emol} ${record_xy} ${record_xz} ${record_yz} ${record_lx} ${record_ly} ${record_lz} ${record_density} ${record_pxx} ${record_pyy} ${record_pzz} ${record_pxy} ${record_pxz} ${record_pyz} ${sol_solv}" file output_run.txt title "Step Atoms Temperature Temperature_corr Pressure Volume Potetial_Energy Kinetic_Energy Total_Energy Enthalpy E_vdwl E_tail E_coul E_long E_pair E_bond E_angle E_dihedral E_imp E_mol xy xz yz lx ly lz density Pxx Pyy Pzz Pxy Pxz Pyz E_solute_solvent"
+fix output_sp  all print 1000 "${record_step} ${record_atoms} ${record_T} ${temp_corr} ${record_pe} ${record_evdwl} ${record_etail} ${record_ecoul} ${record_elong} ${record_epair} ${sol_solv}" file output_sp.txt title "Step Atoms Temperature Temperature_corr PE e_vdW e_tail e_coul e_long e_pair e_sol_solv" 
+
+
+run		${tsim}
+
+
+undump run_custom_data
+unfix  output_run
+unfix  output_sp
+unfix  fxnpt
+
+
+

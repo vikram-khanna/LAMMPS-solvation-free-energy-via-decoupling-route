@@ -1,0 +1,51 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+group solute molecule == 1
+group water  molecule != 1
+
+##Below compute used in rerun with ALL LJ interactions turned OFF, and lmbq=1, giving solute-solvent coulomb interaction, i.e. dUdlmbQ
+compute inter_epair solute group/group water kspace yes molecule inter 
+
+variable sol_solv equal c_inter_epair
+
+##PRINTING THERMO VALUE                                          ###   PRINT THERMO VALS  ###
+timestep		${tstep}
+thermo			${out_thermo}
+thermo_style custom step atoms temp press vol pe ke etotal enthalpy evdwl etail ecoul elong epair ebond eangle edihed eimp emol xy xz yz lx ly lz density pxx pyy pzz pxy pxz pyz c_inter_epair
+						
+
+## Variables for printing 
+variable        record_step equal step
+variable        record_atoms equal atoms
+variable        record_T equal temp
+variable        record_p equal press
+variable        record_V equal vol
+variable        record_pe equal pe
+variable        record_ke equal ke
+variable        record_te equal etotal
+variable        record_H equal enthalpy
+variable 	record_evdwl equal evdwl
+variable 	record_etail equal etail
+variable 	record_ecoul equal ecoul
+variable 	record_elong equal elong
+variable 	record_epair equal epair
+variable 	record_ebond equal ebond
+variable 	record_eangle equal eangle
+variable 	record_edihed equal edihed
+variable 	record_eimp equal eimp
+variable 	record_emol equal emol
+variable 	record_density equal density
+
+variable 	record_xy equal xy
+variable 	record_xz equal xz
+variable 	record_yz equal yz
+variable 	record_lx equal lx
+variable 	record_ly equal ly
+variable 	record_lz equal lz
+variable 	record_pxx equal pxx
+variable 	record_pyy equal pyy
+variable 	record_pzz equal pzz
+variable 	record_pxy equal pxy
+variable 	record_pxz equal pxz
+variable 	record_pyz equal pyz
