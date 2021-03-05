@@ -1,0 +1,36 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+## DEFINE SOME VARIABLES
+
+variable 		lmbLJ equal 0.19739065     # the lambda parameter scaling the LJ solute-solvent interaction
+variable 		lmbq equal 1e-9	           # the lambda parameter scaling the charges on the solute, i.e., lambda_q
+variable		T equal 298.15	           # the target temperature of the simulation
+variable 		P equal 1.0.               # the target pressure of the simulation 
+variable		seed equal 8768	           # the seed value to initialize velocities in the simulation
+variable		tstep equal 1.0	           # the time step used to integrate the ODEs, in femtoseconds (for LAMMPS real units style)
+variable		Tdamp equal 100*${tstep}	 # temperature damping parameter (time units)
+variable 		Pdamp equal 1000*${tstep}	 # stress damping parameter (time units)
+variable		tsim equal 8e6	           # number of steps to run the simulation                         		
+variable		out_thermo equal 1000      # number of steps after which thermodynamic output is "dumped"
+variable 		delta1 equal ${lmbLJ}*1e-3   # forward perturbation used in fep command in "system.in.thermo" file
+variable 		delta2 equal -${lmbLJ}*1e-3  # backward perturbation used in fep command in "system.in.thermo" file
+variable 		lmbCoul equal (1.00-(${lmbq}*${lmbq}))/(${lmbq}*${lmbq}) # lambda_coul; the parameter used in the overlay correction to recover the intramolecular coulombic energy
+
+
+### Defining the charges on the solute [ethanol] molecule (they are set in the "system.in.charges" file) ### 
+
+variable 		q1 equal ${lmbq}*-0.09688888888888889
+variable 		q2 equal ${lmbq}*0.12981111111111113
+variable 		q3 equal ${lmbq}*-0.599488888888889
+variable 		q4 equal ${lmbq}*0.044811111111111114
+variable 		q5 equal ${lmbq}*0.044811111111111114
+variable 		q6 equal ${lmbq}*0.044811111111111114
+variable 		q7 equal ${lmbq}*0.017111111111111115
+variable 		q8 equal ${lmbq}*0.017111111111111115
+variable 		q9 equal ${lmbq}*0.3979111111111111     
+
+### Defining the charges on the solvent [water] molecule (they are set in the "system.in.charges" file) ### 
+
+variable 		q10 equal (-0.834)
+variable 		q11 equal 0.417

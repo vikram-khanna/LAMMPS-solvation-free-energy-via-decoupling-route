@@ -1,0 +1,11 @@
+# Created by Vikram Khanna, Doherty and Peters Research Groups, ChemE, UCSB; 08-Feb-2021
+# Tested and validated on LAMMPS Version 31-Mar-2017
+
+fix             fxshake all shake 0.0001 100 0 b 3 4 5 6 a 8
+velocity	all create $T ${seed} rot yes mom yes dist gaussian
+
+fix		fxnpt all npt temp $T $T ${Tdamp} iso $P $P ${Pdamp}
+
+compute temp_com all temp/com
+variable temp_corr equal c_temp_com
+fix_modify fxnpt temp temp_com
