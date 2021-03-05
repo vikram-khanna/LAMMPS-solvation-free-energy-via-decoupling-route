@@ -1,4 +1,4 @@
-# [LAMMPS](https://lammps.sandia.gov)-solvation-free-energy-decoupling-route
+# [LAMMPS](https://lammps.sandia.gov)-solvation-free-energy-via-decoupling-route
 
 A minimum working example for computing the solvation free energy of ethanol (GAFF 1.7 and AM1-BCC charges) in water (TIP3P) based on *[Performing solvation free energy calculations in LAMMPS using the decoupling approach](https://doi.org/10.1007/s10822-020-00303-3)*
 
